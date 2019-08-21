@@ -3,27 +3,34 @@
   <head>
     <meta charset="UTF-8">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" crossorigin="anonymous">
 
     <title>YouTube Downloader</title>
     <link rel="stylesheet" href="index.css">
   </head>
   <body>
-     <div id="title-bar">
-      <div id="title">My Life For The Code</div>
-      <div id="title-bar-btns">
-          <button id="min-btn">-</button>
-          <button id="max-btn">+</button>
-          <button id="close-btn">x</button>
+    <form onSubmit="getMetadata()">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <button type="button" class="btn btn-primary btn-sm input-group-button" id="add-btn">Add</button>
+        </div>
+        <input type="url" class="form-control" placeholder="Enter YouTube URL" aria-label="Url" aria-describedby="basic-addon1" id="url">
+        
       </div>
-    </div>
-    <h1>💖 Hello World!</h1>
-    <p>Welcome to your Electron application.</p>
-
+    </form>
+    <hr/>
     <ul class="list-unstyled" id="media-list">
       <!-- This is where we will append media objects -->
     </ul> 
     
+    <div id="footer-btns">
+      <div class="custom-control custom-switch float-left" style="margin-left: 8px">
+        <input type="checkbox" class="custom-control-input" id="includeVideo" name="includeVideo">
+        <label class="custom-control-label" for="includeVideo">Include Video?</label>
+      </div>
+      <button id="download-btn" class="btn btn-outline-primary btn-sm float-right"> Download </button>
+    </div>
+
     <script src="./renderer.js" />
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
