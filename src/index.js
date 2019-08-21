@@ -15,7 +15,7 @@ const createWindow = () => {
     width: 800,
     height: 600,
     icon: __dirname + "/ytdllogo.png",
-    frame: false,
+    frame: true,
     webPreferences: {
       //preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true
