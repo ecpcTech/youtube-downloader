@@ -1,6 +1,8 @@
 const youtubeDl = require("youtube-dl");
+const { remote } = require('electron');
 const { app } = require('electron').remote;
 const path = require('path');
+const { BrowserWindow } = require('electron').remote;
 var urls = [];
 
 function getMetadata() {
@@ -72,21 +74,23 @@ function download() {
             console.log(output.join('\n'));
         });
     } else {
-        youtubeDl.exec(urls.join(", "), ['-x', '--audio-format', 'mp3'], { cwd: path.dirname(outputPath) }, function (err, output) {
-            if (err) throw err;
+        youtubeDl.exec(urls, ['-x', '--audio-format', 'mp3'], { cwd: path.dirname(outputPath) }, function (err, output) {
+            let downloadBtn = document.getElementById("download-btn");
+            downloadBtn.classList.remove("btn-outline-primary");
+            if (err) {
+                downloadBtn.classList.add("btn-outline-danger");
+                throw err;
+            }
+            downloadBtn.classList.add("btn-outline-success");
+            downloadBtn.innerText = "✔ Download complete";
             console.log(output.join('\n'));
         });
     }
-    /*let video = youtubeDl(firstUrl, params, { cwd: __dirname });
-    video.on('info', function (info) {
-        console.log('Download started');
-        console.log('filename: ' + info._filename);
-        console.log('size: ' + info.size);
-    });
-
-    video.pipe(fs.createWriteStream('videos.' + ext));
-    */
 }
 
 document.getElementById("add-btn").addEventListener('click', () => { getMetadata() });
-document.getElementById("download-btn").addEventListener('click', () => { download() });
+document.getElementById("download-btn").addEventListener('click', () => { 
+    document.getElementById("download-btn").disabled = true;
+    document.getElementById("download-btn").innerText = "⇩ Download in progress..."; 
+    download();
+});
