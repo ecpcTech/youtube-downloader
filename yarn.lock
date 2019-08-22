@@ -842,12 +842,6 @@ fd-slicer@~1.0.1:
   dependencies:
     pend "~1.2.0"
 
-ffmpeg@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/ffmpeg/-/ffmpeg-0.0.4.tgz#1c460df8e7da5127f62ceef4bfa06c59c89630cb"
-  dependencies:
-    when ">= 0.0.1"
-
 figures@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/figures/-/figures-3.0.0.tgz#756275c964646163cc6f9197c7a0295dbfd04de9"
@@ -2378,10 +2372,6 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
-"when@>= 0.0.1":
-  version "3.7.8"
-  resolved "https://registry.yarnpkg.com/when/-/when-3.7.8.tgz#c7130b6a7ea04693e842cdc9e7a1f2aa39a39f82"
-
 which-module@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/which-module/-/which-module-2.0.0.tgz#d9ef07dce77b9902b8a3a8fa4b31c3e3f7e6e87a"
@@ -2478,6 +2468,7 @@ yauzl@2.4.1:
 youtube-dl@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/youtube-dl/-/youtube-dl-2.0.1.tgz#590318f432d72c4f402da53fb680ac1acd688f44"
+  integrity sha512-6CS6954i5Su8W9frP4RqJ/De1Kg4ralp4yAeUy1KJRUzrtrvyCnQytlGMsXp/CGslOC/KdBR4F9jWlq4PUhtFw==
   dependencies:
     hh-mm-ss "~1.2.0"
     mkdirp "~0.5.1"
