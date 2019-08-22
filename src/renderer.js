@@ -70,7 +70,14 @@ function download() {
 
     if (withVideo === true) {
         youtubeDl.exec(urls.join(', '), [], { cwd: path.dirname(outputPath) }, function (err, output) {
-            if (err) throw err;
+            let downloadBtn = document.getElementById("download-btn");
+            downloadBtn.classList.remove("btn-outline-primary");
+            if (err) {
+                downloadBtn.classList.add("btn-outline-danger");
+                throw err;
+            }
+            downloadBtn.classList.add("btn-outline-success");
+            downloadBtn.innerText = "✔ Download complete";
             console.log(output.join('\n'));
         });
     } else {
@@ -89,8 +96,8 @@ function download() {
 }
 
 document.getElementById("add-btn").addEventListener('click', () => { getMetadata() });
-document.getElementById("download-btn").addEventListener('click', () => { 
+document.getElementById("download-btn").addEventListener('click', () => {
     document.getElementById("download-btn").disabled = true;
-    document.getElementById("download-btn").innerText = "⇩ Download in progress..."; 
+    document.getElementById("download-btn").innerText = "⇩ Download in progress...";
     download();
 });
