@@ -1,7 +1,6 @@
 const youtubeDl = require("youtube-dl");
-const fs = require("fs");
-const { remote } = require('electron');
 const { app } = require('electron').remote;
+const path = require('path');
 var urls = [];
 
 function getMetadata() {
@@ -57,8 +56,9 @@ function prependListElement(info, url) {
 
 function download() {
     let withVideo = document.getElementById("includeVideo").checked;
-    let outputPath = withVideo === true ? app.getPath('video') : app.getPath('music');
-    outputPath += '\\%(title)s.%(ext)s';
+    app.get
+    let outputPath = withVideo === true ? app.getPath('videos') : app.getPath('music');
+    outputPath += '/%(title)s.%(ext)s';
     let params = [];
     if (withVideo === false) {
         params.push("-f bestaudio");
@@ -66,10 +66,17 @@ function download() {
     }
     console.log("downloading urls: ", urls.join(", "), " to : ", outputPath);
 
-    youtubeDl.exec(urls.join(", "), ['-x', '--audio-format', 'mp3', '-o ' + outputPath], {}, function (err, output) {
-        if (err) throw err;
-        console.log(output.join('\n'));
-    });
+    if (withVideo === true) {
+        youtubeDl.exec(urls.join(', '), [], { cwd: path.dirname(outputPath) }, function (err, output) {
+            if (err) throw err;
+            console.log(output.join('\n'));
+        });
+    } else {
+        youtubeDl.exec(urls.join(", "), ['-x', '--audio-format', 'mp3'], { cwd: path.dirname(outputPath) }, function (err, output) {
+            if (err) throw err;
+            console.log(output.join('\n'));
+        });
+    }
     /*let video = youtubeDl(firstUrl, params, { cwd: __dirname });
     video.on('info', function (info) {
         console.log('Download started');
